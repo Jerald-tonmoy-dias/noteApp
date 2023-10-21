@@ -67,7 +67,7 @@ const deleteNote = async (req, res) => {
   const noteId = req.params.id;
   try {
     await Note.deleteOne({ _id: noteId });
-    res.json({ msg: "Deleted succesfully" });
+    res.json({ noteId, msg: "Deleted succesfully" });
   } catch (err) {
     res.json({ err })
   }
