@@ -6,5 +6,8 @@ export const axiosInstance = axios.create({
 
 export const endpoints = {
   notes: '/notes',
-  user: '/user',
+  login: '/login',
+  signup: '/signup',
+  logout: '/logout',
+  check_auth: '/check-auth',
 };

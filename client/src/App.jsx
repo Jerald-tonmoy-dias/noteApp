@@ -1,31 +1,31 @@
-import { useEffect } from 'react'
-import './App.css'
-import notesStore from './stores/notesStore';
-import Notes from './components/Notes';
-import CreateNotes from './components/CreateNotes';
-import UpdateNotes from './components/UpdateNotes';
 
+import './App.css'
+import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
+import NotePage from './pages/NotePage';
+import { Routes, Route } from "react-router-dom"
+import SignUp from './pages/SignUp';
+import LogoutPage from './pages/LogoutPage';
 
 function App() {
-  ////////////////////  global store  /////////////////////////
-  const store = notesStore();
 
-  // useffect
-  useEffect(() => {
-    store.fectNotesFunc();
-    return () => {
-      store.fectNotesFunc();
-    };
-  }, [])
 
   return (
-    <div className='flex flex-col gap-6 p-20'>
-      <Notes />
-      <hr />
-      <CreateNotes />
-      <hr />
-      <UpdateNotes />
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route index element={
+          // <NotePage />
+          <ProtectedRoute>
+            <NotePage />
+          </ProtectedRoute>
+        } />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/logout" element={<LogoutPage />} />
+      </Routes>
+    </>
   )
 }
 

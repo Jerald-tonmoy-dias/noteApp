@@ -1,5 +1,5 @@
 import React from 'react'
-import notesStore from '../stores/notesStore';
+import notesStore from '../../stores/notesStore';
 
 export default function UpdateNotes() {
   const store = notesStore();
