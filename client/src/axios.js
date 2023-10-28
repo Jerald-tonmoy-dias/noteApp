@@ -10,4 +10,5 @@ export const endpoints = {
   signup: '/signup',
   logout: '/logout',
   check_auth: '/check-auth',
+  profile: '/profile',
 };

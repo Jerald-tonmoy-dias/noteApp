@@ -7,7 +7,7 @@ export default function Notes() {
   return (
     <div className='shadow w-full px-4'>
       <h1 className='uppercase font-bold text-center mb-4'>notes</h1>
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid lg:grid-cols-2 xl:grid-cols-3 gap-4'>
         {store.notes && store.notes.map((note) => {
           return <div key={note._id} className='flex flex-col gap-4 shadow p-8 mb-4 border rounded'>
             <div className='flex uppercase gap-4'>

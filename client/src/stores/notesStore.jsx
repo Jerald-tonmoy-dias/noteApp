@@ -24,7 +24,6 @@ const notesStore = create((set) => ({
     })
   },
   toggleEditMode: (noteItem) => {
-    // console.log(noteItem._id)
     set(state => {
       return {
         updateFormData: {
@@ -35,12 +34,6 @@ const notesStore = create((set) => ({
         }
       }
     })
-    // setupdateFormData({
-    //   ...updateFormData,
-    //   _id: noteItem._id,
-    //   title: noteItem.title,
-    //   body: noteItem.body,
-    // })
   },
   onUpdateChange: (e) => {
     set(state => {
@@ -51,10 +44,6 @@ const notesStore = create((set) => ({
         }
       }
     })
-    // setupdateFormData({
-    //   ...updateFormData,
-    //   [e.target.name]: e.target.value
-    // })
   },
   // api calls
   fectNotesFunc: async () => {

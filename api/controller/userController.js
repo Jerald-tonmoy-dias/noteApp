@@ -5,14 +5,14 @@ const jwt = require('jsonwebtoken');
 
 async function signup(req, res) {
   // get req
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
 
   // generate hash password
   const hashPass = bcrypt.hashSync(password, 8);
 
   // store to db
   try {
-    await User.create({ email, password: hashPass });
+    await User.create({ username, email, password: hashPass });
     res.sendStatus(200);
   }
   catch (err) {
@@ -24,7 +24,7 @@ async function signup(req, res) {
 
 async function login(req, res) {
   // get req
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
   // find user
   try {
@@ -61,11 +61,20 @@ async function login(req, res) {
 
 
 }
+
 async function logout(req, res) {
   res.clearCookie("Authorization");
   res.sendStatus(200);
 }
 
+async function getProfile(req, res) {
+  res.json({
+    user: req.user
+  })
+}
+
+
+
 module.exports = {
-  signup, login, logout
+  signup, login, logout, getProfile
 }

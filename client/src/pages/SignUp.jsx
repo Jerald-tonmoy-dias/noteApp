@@ -26,6 +26,9 @@ export default function SignUp() {
 
         <form onSubmit={submitRegister} className='flex flex-col gap-4 justify-center items-center' >
           <input
+            value={store.signupFormData.username}
+            onChange={store.signupFormOnChange} className='border p-4 rounded-md w-96' type="text" name="username" placeholder='username' />
+          <input
             value={store.signupFormData.email}
             onChange={store.signupFormOnChange} className='border p-4 rounded-md w-96' type="email" name="email" placeholder='email' />
 

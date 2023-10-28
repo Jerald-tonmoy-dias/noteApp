@@ -2,7 +2,7 @@
 const express = require('express');
 const userRouter = express.Router();
 
-const { signup, login, logout } = require('../controller/userController');
+const { signup, login, logout, getProfile } = require('../controller/userController');
 const requireAuth = require('../middleware/requireAuth');
 
 
@@ -11,6 +11,7 @@ const requireAuth = require('../middleware/requireAuth');
 userRouter.post('/signup', signup);
 userRouter.post('/login', login);
 userRouter.get('/logout', logout);
+userRouter.get('/profile', requireAuth, getProfile);
 
 // test route
 userRouter.get('/check-auth', requireAuth, (req, res) => {

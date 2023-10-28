@@ -2,12 +2,15 @@ import { create } from 'zustand'
 import { axiosInstance, endpoints } from '../axios';
 
 const authStore = create((set) => ({
+  user: null,
   loggedIn: null,
   loginFormData: {
+    username: "",
     email: "",
     password: ""
   },
   signupFormData: {
+    username: "",
     email: "",
     password: ""
   },
@@ -72,13 +75,22 @@ const authStore = create((set) => ({
   },
   checkAuth: async () => {
     await axiosInstance.get(endpoints.check_auth, { withCredentials: true }).then((res) => {
-      console.log("__check_auth__", res);
+      // console.log("__check_auth__", res);
       set({ loggedIn: true })
     }).catch((err) => {
       set({ loggedIn: false })
       console.log("__check_auth__", err);
     })
   },
+  getProfile: async () => {
+    await axiosInstance.get(endpoints.profile, { withCredentials: true }).then((res) => {
+      set({ user: res?.data?.user })
+      // console.log(res?.data?.user);
+    }).catch((err) => {
+      // set({ user: null });
+      console.log(err);
+    });
+  }
 
 
 }))

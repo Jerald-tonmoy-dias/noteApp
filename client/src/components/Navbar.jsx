@@ -1,40 +1,32 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// import authStore from '../stores/authStore';
+import authStore from '../stores/authStore';
 
 export default function Navbar() {
-  // const store = authStore();
-  // const navigate = useNavigate();
-
-  // const handleLogout = async () => {
-  //   try {
-  //     await store.logout
-  //     navigate('/login');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
+  const store = authStore();
   return (
-    <div className='bg-slate-500 p-4' >
+    <div className='bg-slate-500 p-4 flex justify-between' >
       <ul className='flex gap-4 items-center'>
         <li>
           <Link className='text-white font-bold capitalize' to='/'>Home</Link>
         </li>
-        <li>
-          <Link className='text-white font-bold capitalize' to='/login'>login</Link>
-        </li>
-        <li>
-          <Link className='text-white font-bold capitalize' to='/signup'>signup</Link>
-        </li>
-        <li>
-          <Link className='text-white font-bold capitalize' to='/logout'>logout</Link>
-        </li>
-        {/* <li>
-          <button onClick={handleLogout} className='text-white font-bold capitalize  bg-black px-4 py-2'>logout</button>
-        </li> */}
+        {store.loggedIn === true ?
+          <li>
+            <Link className='text-white font-bold capitalize' to='/logout'>logout</Link>
+          </li> : <>
+
+            <li>
+              <Link className='text-white font-bold capitalize' to='/login'>login</Link>
+            </li>
+            <li>
+              <Link className='text-white font-bold capitalize' to='/signup'>sign up</Link>
+            </li>
+          </>
+        }
       </ul>
 
+      {/* user profile */}
+      <h4 className='text-white font-bold capitalize'>Hello , {store.user?.username ? store.user?.username : "there"}</h4>
     </div>
   )
 }
